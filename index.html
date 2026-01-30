@@ -55,7 +55,7 @@
       background: #ffffff;
       border-radius: 8px;
       position: absolute;
-      top: 165px;
+      top: 410px;
       left: 50%;
       margin-left: -10px;
       width: 20px;
@@ -248,31 +248,38 @@
     }
 
     .wish-display {
-      margin-top: 20px;
-      padding: 15px;
-      background: white;
-      border-radius: 15px;
-      border: 2px dashed #ffc0cb;
-      min-height: 60px;
       display: none;
     }
 
-    .wish-display.show {
+    .btn-download {
+      width: 100%;
+      padding: 12px;
+      margin-top: 15px;
+      background: linear-gradient(135deg, #6dd5ed 0%, #2193b0 100%);
+      color: white;
+      border: none;
+      border-radius: 15px;
+      font-family: 'Caveat', cursive;
+      font-size: 1.3rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(33, 147, 176, 0.3);
+      transition: all 0.3s ease;
+      display: none;
+    }
+
+    .btn-download.show {
       display: block;
       animation: fadeIn 0.5s ease;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
+    .btn-download:active {
+      transform: scale(0.95);
+      box-shadow: 0 2px 8px rgba(33, 147, 176, 0.3);
     }
 
-    .wish-display p {
-      font-size: 1.2rem;
-      color: #d63447;
-      line-height: 1.6;
-      font-weight: 600;
-      text-align: center;
+    #wishCanvas {
+      display: none;
     }
 
     .char-count {
@@ -502,12 +509,11 @@
       <div class="char-count">
         <span id="charCount">0</span>/300 karakter
       </div>
-      <button class="btn-submit" onclick="showWish()">✨ Kirim Doa ✨</button>
-      
-      <div id="wishDisplay" class="wish-display">
-        <p id="wishText"></p>
-      </div>
+      <button class="btn-submit" onclick="generateWishImage()">✨ Buat Kartu Doa ✨</button>
+      <button class="btn-download" id="btnDownload" onclick="downloadWish()">📥 Download Kartu Doa</button>
     </div>
+
+    <canvas id="wishCanvas"></canvas>
 
     <script>
         // Confetti
@@ -569,27 +575,136 @@
             charCount.textContent = textarea.value.length;
         }
 
-        // Show wish
-        function showWish() {
+        // Generate wish image
+        function generateWishImage() {
             const wishInput = document.getElementById('wishInput');
-            const wishDisplay = document.getElementById('wishDisplay');
-            const wishText = document.getElementById('wishText');
             
             if (wishInput.value.trim() === '') {
                 alert('Yuk tulis doa dulu! 💕');
                 return;
             }
             
-            wishText.textContent = `"${wishInput.value}"`;
-            wishDisplay.classList.add('show');
+            const canvas = document.getElementById('wishCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Set canvas size
+            canvas.width = 1080;
+            canvas.height = 1350;
+            
+            // Background gradient
+            const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            gradient.addColorStop(0, '#ffc0cb');
+            gradient.addColorStop(1, '#ffb3d9');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw decorative elements
+            drawDecorations(ctx, canvas.width, canvas.height);
+            
+            // Draw title
+            ctx.fillStyle = '#d63447';
+            ctx.font = 'bold 80px Pacifico, cursive';
+            ctx.textAlign = 'center';
+            ctx.fillText('Doa untuk Nissaaa', canvas.width / 2, 150);
+            
+            // Draw emoji
+            ctx.font = '100px Arial';
+            ctx.fillText('🎂', canvas.width / 2 - 150, 280);
+            ctx.fillText('✨', canvas.width / 2 + 150, 280);
+            
+            // Draw wish box
+            const boxX = 80;
+            const boxY = 350;
+            const boxWidth = canvas.width - 160;
+            const boxHeight = 750;
+            
+            // Box shadow
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+            ctx.roundRect(boxX + 5, boxY + 5, boxWidth, boxHeight, 30);
+            ctx.fill();
+            
+            // Box background
+            ctx.fillStyle = '#ffffff';
+            ctx.roundRect(boxX, boxY, boxWidth, boxHeight, 30);
+            ctx.fill();
+            
+            // Box border
+            ctx.strokeStyle = '#ff8fab';
+            ctx.lineWidth = 6;
+            ctx.roundRect(boxX, boxY, boxWidth, boxHeight, 30);
+            ctx.stroke();
+            
+            // Draw wish text
+            ctx.fillStyle = '#333333';
+            ctx.font = '42px Arial';
+            ctx.textAlign = 'left';
+            
+            const lines = wrapText(ctx, wishInput.value, boxWidth - 80);
+            const lineHeight = 60;
+            const startY = boxY + 100;
+            
+            lines.forEach((line, index) => {
+                const y = startY + (index * lineHeight);
+                ctx.fillText(line, boxX + 40, y);
+            });
+            
+            // Draw footer
+            ctx.fillStyle = '#d63447';
+            ctx.font = 'italic 36px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('💖 Semoga Terkabul 💖', canvas.width / 2, canvas.height - 100);
+            
+            // Show download button
+            document.getElementById('btnDownload').classList.add('show');
             
             // Create floating hearts
             createFloatingHearts();
+        }
+
+        // Helper function to wrap text
+        function wrapText(ctx, text, maxWidth) {
+            const words = text.split(' ');
+            const lines = [];
+            let currentLine = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                const word = words[i];
+                const width = ctx.measureText(currentLine + ' ' + word).width;
+                if (width < maxWidth) {
+                    currentLine += ' ' + word;
+                } else {
+                    lines.push(currentLine);
+                    currentLine = word;
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        // Draw decorations
+        function drawDecorations(ctx, width, height) {
+            // Draw hearts
+            const hearts = ['💖', '💝', '💗', '💓', '💕', '🌸', '🌺', '🎀'];
+            ctx.font = '50px Arial';
             
-            // Scroll to display
-            setTimeout(() => {
-                wishDisplay.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }, 100);
+            for (let i = 0; i < 15; i++) {
+                const x = Math.random() * width;
+                const y = Math.random() * height;
+                const emoji = hearts[Math.floor(Math.random() * hearts.length)];
+                ctx.fillText(emoji, x, y);
+            }
+        }
+
+        // Download wish
+        function downloadWish() {
+            const canvas = document.getElementById('wishCanvas');
+            const link = document.createElement('a');
+            link.download = 'doa-untuk-nissaaa.png';
+            link.href = canvas.toDataURL();
+            link.click();
+            
+            // Show success message
+            alert('Kartu doa berhasil didownload! 💖');
         }
 
         function createFloatingHearts() {
@@ -608,6 +723,23 @@
                     heart.remove();
                 }, 3000);
             }
+        }
+
+        // Add roundRect function for older browsers
+        if (!CanvasRenderingContext2D.prototype.roundRect) {
+            CanvasRenderingContext2D.prototype.roundRect = function (x, y, width, height, radius) {
+                this.beginPath();
+                this.moveTo(x + radius, y);
+                this.lineTo(x + width - radius, y);
+                this.quadraticCurveTo(x + width, y, x + width, y + radius);
+                this.lineTo(x + width, y + height - radius);
+                this.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+                this.lineTo(x + radius, y + height);
+                this.quadraticCurveTo(x, y + height, x, y + height - radius);
+                this.lineTo(x, y + radius);
+                this.quadraticCurveTo(x, y, x + radius, y);
+                this.closePath();
+            };
         }
     </script>
 </body>
