@@ -2,33 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Happy birthday Nissaa!</title>
-  <link rel="stylesheet" href="https://public.codepenassets.com/css/reset-2.0.min.css">
   <style>
-    @import url(https://fonts.googleapis.com/css?family=Lato:300italic);
+    @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Pacifico&display=swap');
 
     * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
     }
 
-    html,
     body {
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
-    }
-
-    body {
-      background: #ffc0cb !important;
+      background: #ffc0cb;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
-      min-height: 100vh;
-      padding: 60px 20px 20px 20px;
+      padding: 30px 15px 40px;
+      font-family: 'Caveat', cursive;
+      overflow-x: hidden;
     }
 
     #confetti-container {
@@ -44,38 +37,39 @@
 
     .cake-container {
       position: relative;
-      width: 100%;
-      max-width: 200px;
-      margin: 0 auto;
+      width: 180px;
+      height: 400px;
+      margin: 0 auto 30px;
       display: flex;
       justify-content: center;
-      align-items: center;
-      overflow: hidden;
+      align-items: flex-start;
     }
 
     #cake {
-      display: block;
-      width: 100%;
+      width: 180px;
       height: auto;
-      max-width: 200px;
+      display: block;
     }
 
     .candle {
       background: #ffffff;
-      border-radius: 10px;
+      border-radius: 8px;
       position: absolute;
-      top: 190px;
+      top: 165px;
       left: 50%;
-      margin-left: -7.5px;
-      margin-top: 0px;
-      width: 15px;
-      height: 90px;
+      margin-left: -10px;
+      width: 20px;
+      height: 80px;
       transform: translateY(-300px);
-      -webkit-backface-visibility: hidden;
-      backface-visibility: hidden;
-      -webkit-animation: in 500ms 6s ease-out forwards;
-      animation: in 500ms 6s ease-out forwards;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       z-index: 10;
+      animation: candleDrop 500ms 6s ease-out forwards;
+    }
+
+    @keyframes candleDrop {
+      to {
+        transform: translateY(0);
+      }
     }
 
     .candle:after,
@@ -84,65 +78,49 @@
       content: "";
       position: absolute;
       width: 100%;
-      height: 3.5px;
+      height: 4px;
+      border-radius: 2px;
     }
 
     .candle:after {
-      top: 15%;
+      top: 20%;
       left: 0;
     }
 
     .candle:before {
-      top: 45%;
+      top: 50%;
       left: 0;
     }
 
     .fire {
       border-radius: 100%;
       position: absolute;
-      top: -25px;
+      top: -22px;
       left: 50%;
-      margin-left: -4px;
+      margin-left: -5px;
       width: 10px;
-      height: 24px;
+      height: 22px;
+      animation: fire 1.5s 6.5s infinite;
     }
 
     .fire:nth-child(1) {
-      -webkit-animation: fire 2s 6.5s infinite;
       animation: fire 2s 6.5s infinite;
     }
 
     .fire:nth-child(2) {
-      -webkit-animation: fire 1.5s 6.5s infinite;
       animation: fire 1.5s 6.5s infinite;
     }
 
     .fire:nth-child(3) {
-      -webkit-animation: fire 1s 6.5s infinite;
       animation: fire 1s 6.5s infinite;
     }
 
     .fire:nth-child(4) {
-      -webkit-animation: fire 0.5s 6.5s infinite;
       animation: fire 0.5s 6.5s infinite;
     }
 
     .fire:nth-child(5) {
-      -webkit-animation: fire 0.2s 6.5s infinite;
       animation: fire 0.2s 6.5s infinite;
-    }
-
-    @-webkit-keyframes fire {
-      0%, 100% {
-        background: rgba(254, 248, 97, 0.5);
-        box-shadow: 0 0 40px 10px rgba(248, 233, 209, 0.2);
-        transform: translateY(0) scale(1);
-      }
-      50% {
-        background: rgba(255, 50, 0, 0.1);
-        box-shadow: 0 0 40px 20px rgba(248, 233, 209, 0.2);
-        transform: translateY(-20px) scale(0);
-      }
     }
 
     @keyframes fire {
@@ -158,41 +136,22 @@
       }
     }
 
-    @-webkit-keyframes in {
-      to {
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes in {
-      to {
-        transform: translateY(0);
-      }
-    }
-
     .text {
-      margin-top: 30px;
       text-align: center;
       width: 100%;
-      padding: 0 10px;
-      order: 2;
+      margin-bottom: 25px;
     }
 
     .text h1 {
-      font-family: 'Brush Script MT', cursive;
-      font-size: clamp(2rem, 8vw, 3rem);
-      color: red;
+      font-family: 'Pacifico', cursive;
+      font-size: 2rem;
+      color: #d63447;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
       white-space: nowrap;
       overflow: hidden;
-      border-right: 3px solid red;
+      border-right: 3px solid #d63447;
       display: inline-block;
-      max-width: 100%;
-    }
-
-    .typewriter {
-      animation:
-        typing 2s steps(30, end) forwards,
-        blink .7s infinite;
+      animation: typing 2s steps(30, end) forwards, blink .7s infinite;
     }
 
     @keyframes typing {
@@ -204,197 +163,164 @@
       50% { border-color: transparent; }
     }
 
-    @keyframes fall {
-      0% { 
-        transform: translateY(0) rotate(0deg); 
-        opacity: 1;
-      }
-      100% { 
-        transform: translateY(110vh) rotate(360deg); 
+    .wish-container {
+      background: linear-gradient(135deg, #fff5f7 0%, #ffe8ec 100%);
+      border-radius: 25px;
+      padding: 25px 20px;
+      width: 100%;
+      max-width: 350px;
+      box-shadow: 0 8px 25px rgba(214, 52, 71, 0.15);
+      border: 3px solid #ffc0cb;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .wish-container::before {
+      content: "✨";
+      position: absolute;
+      top: 10px;
+      left: 15px;
+      font-size: 1.5rem;
+      animation: sparkle 2s infinite;
+    }
+
+    .wish-container::after {
+      content: "💝";
+      position: absolute;
+      bottom: 10px;
+      right: 15px;
+      font-size: 1.5rem;
+      animation: heartbeat 1.5s infinite;
+    }
+
+    @keyframes sparkle {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.2); }
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      25% { transform: scale(1.1); }
+      50% { transform: scale(1); }
+    }
+
+    .wish-container h2 {
+      font-family: 'Caveat', cursive;
+      font-size: 1.8rem;
+      color: #d63447;
+      margin-bottom: 15px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .wish-container label {
+      display: block;
+      font-size: 1.1rem;
+      color: #555;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .wish-container textarea {
+      width: 100%;
+      min-height: 120px;
+      padding: 15px;
+      border: 2px solid #ffb3c1;
+      border-radius: 15px;
+      font-family: 'Caveat', cursive;
+      font-size: 1.1rem;
+      color: #333;
+      background: white;
+      resize: vertical;
+      transition: all 0.3s ease;
+    }
+
+    .wish-container textarea:focus {
+      outline: none;
+      border-color: #ff8fab;
+      box-shadow: 0 0 15px rgba(255, 143, 171, 0.3);
+      transform: scale(1.02);
+    }
+
+    .wish-container textarea::placeholder {
+      color: #ffb3c1;
+      font-style: italic;
+    }
+
+    .wish-display {
+      margin-top: 20px;
+      padding: 15px;
+      background: white;
+      border-radius: 15px;
+      border: 2px dashed #ffc0cb;
+      min-height: 60px;
+      display: none;
+    }
+
+    .wish-display.show {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .wish-display p {
+      font-size: 1.2rem;
+      color: #d63447;
+      line-height: 1.6;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .char-count {
+      text-align: right;
+      font-size: 0.9rem;
+      color: #999;
+      margin-top: 5px;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 12px;
+      margin-top: 15px;
+      background: linear-gradient(135deg, #ff8fab 0%, #ff6b9d 100%);
+      color: white;
+      border: none;
+      border-radius: 15px;
+      font-family: 'Caveat', cursive;
+      font-size: 1.3rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .btn-submit:active {
+      transform: scale(0.95);
+      box-shadow: 0 2px 8px rgba(255, 107, 157, 0.3);
+    }
+
+    .hearts {
+      position: absolute;
+      font-size: 1.2rem;
+      animation: floatHeart 3s ease-in-out infinite;
+      opacity: 0;
+    }
+
+    @keyframes floatHeart {
+      0% {
+        transform: translateY(0) rotate(0deg);
         opacity: 0;
       }
-    }
-
-    /* Mobile Optimization */
-    @media screen and (max-width: 768px) {
-      body {
-        padding: 40px 10px 10px 10px;
+      50% {
+        opacity: 1;
       }
-
-      .cake-container {
-        max-width: 150px;
-      }
-
-      #cake {
-        max-width: 150px;
-      }
-
-      .candle {
-        top: 143px;
-        width: 11.25px;
-        height: 67.5px;
-        margin-left: -5.625px;
-      }
-
-      .fire {
-        top: -19px;
-        width: 7.5px;
-        height: 18px;
-        margin-left: -3px;
-      }
-
-      .text {
-        margin-top: 20px;
-      }
-
-      .text h1 {
-        font-size: clamp(1.5rem, 6vw, 2.5rem);
-      }
-    }
-
-    @media screen and (max-width: 480px) {
-      body {
-        padding: 30px 10px 10px 10px;
-      }
-
-      .cake-container {
-        max-width: 120px;
-      }
-
-      #cake {
-        max-width: 120px;
-      }
-
-      .candle {
-        top: 114px;
-        width: 9px;
-        height: 54px;
-        margin-left: -4.5px;
-      }
-
-      .fire {
-        top: -15px;
-        width: 6px;
-        height: 14px;
-        margin-left: -2.4px;
-      }
-
-      .text {
-        margin-top: 15px;
-      }
-
-      .text h1 {
-        font-size: clamp(1.2rem, 5vw, 2rem);
-      }
-    }
-
-    /* Desktop/Laptop Optimization */
-    @media screen and (min-width: 769px) {
-      body {
-        padding: 80px 40px 40px 40px;
-      }
-
-      .cake-container {
-        max-width: 250px;
-      }
-
-      #cake {
-        max-width: 250px;
-      }
-
-      .candle {
-        top: 238px;
-        width: 18.75px;
-        height: 112.5px;
-        margin-left: -9.375px;
-      }
-
-      .fire {
-        top: -31px;
-        width: 12.5px;
-        height: 30px;
-        margin-left: -5px;
-      }
-
-      .text {
-        margin-top: 40px;
-      }
-
-      .text h1 {
-        font-size: 3.5rem;
-      }
-    }
-
-    /* Large Desktop */
-    @media screen and (min-width: 1200px) {
-      body {
-        padding: 100px 40px 40px 40px;
-      }
-
-      .cake-container {
-        max-width: 300px;
-      }
-
-      #cake {
-        max-width: 300px;
-      }
-
-      .candle {
-        top: 285px;
-        width: 22.5px;
-        height: 135px;
-        margin-left: -11.25px;
-      }
-
-      .fire {
-        top: -38px;
-        width: 15px;
-        height: 36px;
-        margin-left: -6px;
-      }
-
-      .text {
-        margin-top: 50px;
-      }
-
-      .text h1 {
-        font-size: 4rem;
-      }
-    }
-
-    /* Landscape mode on mobile */
-    @media screen and (max-height: 600px) and (orientation: landscape) {
-      body {
-        flex-direction: row;
-        justify-content: space-around;
-        padding: 10px;
-      }
-
-      .cake-container {
-        max-width: 120px;
-      }
-
-      #cake {
-        max-width: 120px;
-      }
-
-      .candle {
-        top: 114px;
-        width: 9px;
-        height: 54px;
-        margin-left: -4.5px;
-      }
-
-      .fire {
-        top: -15px;
-        width: 6px;
-        height: 14px;
-        margin-left: -2.4px;
-      }
-
-      .text {
-        margin-top: 0;
-        margin-left: 20px;
+      100% {
+        transform: translateY(-100px) rotate(180deg);
+        opacity: 0;
       }
     }
   </style>
@@ -564,36 +490,45 @@
       <h1 class="typewriter">Happy Birthday Nissaaa!</h1>
     </div>
 
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <div class="wish-container">
+      <h2>🎂 Doa Tahun Ini 🎂</h2>
+      <label for="wishInput">Tuliskan harapan & doa untuk Nissa:</label>
+      <textarea 
+        id="wishInput" 
+        placeholder="Contoh: Semoga tahun ini penuh berkah, sehat selalu, dan semua impianmu tercapai! 💖"
+        maxlength="300"
+        oninput="updateCharCount()"
+      ></textarea>
+      <div class="char-count">
+        <span id="charCount">0</span>/300 karakter
+      </div>
+      <button class="btn-submit" onclick="showWish()">✨ Kirim Doa ✨</button>
+      
+      <div id="wishDisplay" class="wish-display">
+        <p id="wishText"></p>
+      </div>
+    </div>
+
     <script>
-        // Wait until the page and animations are done
+        // Confetti
         window.addEventListener('load', () => {
-            // Delay the confetti start until the cake/candle animations are finished
             setTimeout(() => {
                 startConfetti();
-            }, 5000); // Adjust delay if animations are longer
+            }, 5000);
         });
 
         function startConfetti() {
             const container = document.getElementById('confetti-container');
-            
-            if (!container) {
-                console.error('Confetti container not found');
-                return;
-            }
+            if (!container) return;
 
-            const colors = ['#f2d74e', '#95c3de', '#ff9a91', '#a4ffc4', '#ffffff'];
+            const colors = ['#f2d74e', '#95c3de', '#ff9a91', '#a4ffc4', '#ffffff', '#ffb3c1', '#ff6b9d'];
+            const confettiCount = 150;
 
-            // Adjust confetti count based on screen size
-            const isMobile = window.innerWidth <= 768;
-            const confettiCount = isMobile ? 100 : 200;
-
-            // Create confetti dots
             for (let i = 0; i < confettiCount; i++) {
                 const dot = document.createElement('div');
-                const size = Math.random() * 8 + 4;
-                const delay = Math.random() * 5; // stagger start
-                const duration = Math.random() * 3 + 3; // random duration between 3-6s
+                const size = Math.random() * 10 + 4;
+                const delay = Math.random() * 5;
+                const duration = Math.random() * 3 + 3;
                 
                 dot.style.cssText = `
                     position: absolute;
@@ -603,7 +538,7 @@
                     top: -20px;
                     left: ${Math.random() * 100}vw;
                     border-radius: 50%;
-                    opacity: ${Math.random()};
+                    opacity: ${Math.random() * 0.7 + 0.3};
                     transform: translateY(0) rotate(${Math.random() * 360}deg);
                     animation: confettiFall ${duration}s linear ${delay}s infinite;
                 `;
@@ -611,40 +546,69 @@
                 container.appendChild(dot);
             }
 
-            // Add CSS for the fall animation dynamically
-            if (!document.getElementById('confetti-styles')) {
-                const style = document.createElement('style');
-                style.id = 'confetti-styles';
-                style.innerHTML = `
-                    @keyframes confettiFall {
-                        0% {
-                            transform: translateY(0) rotate(0deg);
-                            opacity: 1;
-                        }
-                        100% {
-                            transform: translateY(110vh) rotate(360deg);
-                            opacity: 0;
-                        }
+            const style = document.createElement('style');
+            style.innerHTML = `
+                @keyframes confettiFall {
+                    0% {
+                        transform: translateY(0) rotate(0deg);
+                        opacity: 1;
                     }
-                `;
-                document.head.appendChild(style);
-            }
+                    100% {
+                        transform: translateY(110vh) rotate(720deg);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
         }
 
-        // Optional: Restart confetti on window resize for better responsiveness
-        let resizeTimer;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(() => {
-                const container = document.getElementById('confetti-container');
-                if (container && container.children.length > 0) {
-                    // Clear existing confetti
-                    container.innerHTML = '';
-                    // Restart with new screen size
-                    startConfetti();
-                }
-            }, 500);
-        });
+        // Character counter
+        function updateCharCount() {
+            const textarea = document.getElementById('wishInput');
+            const charCount = document.getElementById('charCount');
+            charCount.textContent = textarea.value.length;
+        }
+
+        // Show wish
+        function showWish() {
+            const wishInput = document.getElementById('wishInput');
+            const wishDisplay = document.getElementById('wishDisplay');
+            const wishText = document.getElementById('wishText');
+            
+            if (wishInput.value.trim() === '') {
+                alert('Yuk tulis doa dulu! 💕');
+                return;
+            }
+            
+            wishText.textContent = `"${wishInput.value}"`;
+            wishDisplay.classList.add('show');
+            
+            // Create floating hearts
+            createFloatingHearts();
+            
+            // Scroll to display
+            setTimeout(() => {
+                wishDisplay.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 100);
+        }
+
+        function createFloatingHearts() {
+            const container = document.querySelector('.wish-container');
+            const hearts = ['💖', '💝', '💗', '💓', '💕'];
+            
+            for (let i = 0; i < 8; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'hearts';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.animationDelay = `${i * 0.2}s`;
+                container.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 3000);
+            }
+        }
     </script>
 </body>
 </html>
