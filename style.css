@@ -14,22 +14,6 @@ body {
 }
 
 body {
-  background: #ffc0cb;@import url(https://fonts.googleapis.com/css?family=Lato:300italic);
-
-* {
-  box-sizing: border-box;
-}
-
-html,
-body {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-}
-
-body {
   background: #ffc0cb !important;
   display: flex;
   flex-direction: column;
@@ -55,6 +39,9 @@ body {
   width: 100%;
   max-width: 200px;
   margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #cake {
@@ -62,14 +49,13 @@ body {
   width: 100%;
   height: auto;
   max-width: 200px;
-  margin: 0 auto;
 }
 
 .candle {
   background: #ffffff;
   border-radius: 10px;
   position: absolute;
-  top: 228px;
+  top: 45.6%; /* Proportional percentage instead of fixed pixels */
   left: 50%;
   margin-left: -5px;
   margin-top: -8.33333333px;
@@ -80,6 +66,7 @@ body {
   backface-visibility: hidden;
   -webkit-animation: in 500ms 6s ease-out forwards;
   animation: in 500ms 6s ease-out forwards;
+  z-index: 10;
 }
 
 .candle:after,
@@ -235,7 +222,9 @@ body {
   }
 
   .candle {
-    top: 171px; /* Proportional to smaller cake */
+    width: 7.5px;
+    height: 52.5px;
+    margin-left: -3.75px;
   }
 
   .text {
@@ -257,9 +246,9 @@ body {
   }
 
   .candle {
-    top: 137px; /* Proportional to even smaller cake */
-    width: 8px;
-    height: 56px;
+    width: 6px;
+    height: 42px;
+    margin-left: -3px;
   }
 
   .text h1 {
@@ -282,10 +271,9 @@ body {
   }
 
   .candle {
-    top: 285px; /* Proportional to larger cake */
-    width: 12px;
-    height: 84px;
-    margin-left: -6px;
+    width: 12.5px;
+    height: 87.5px;
+    margin-left: -6.25px;
   }
 
   .text {
@@ -308,7 +296,6 @@ body {
   }
 
   .candle {
-    top: 342px; /* Proportional to largest cake */
     width: 15px;
     height: 105px;
     margin-left: -7.5px;
@@ -336,268 +323,9 @@ body {
   }
 
   .candle {
-    top: 137px;
-  }
-
-  .text {
-    margin-top: 0;
-    margin-left: 20px;
-  }
-}
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  padding: 20px;
-}
-
-#confetti-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 9999;
-}
-
-.cake-container {
-  position: relative;
-  width: 100%;
-  max-width: 200px;
-  margin: 0 auto;
-}
-
-#cake {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-width: 200px;
-  margin: 0 auto;
-}
-
-.candle {
-  background: #ffffff;
-  border-radius: 10px;
-  position: absolute;
-  top: 228px;
-  left: 50%;
-  margin-left: -5px;
-  margin-top: -8.33333333px;
-  width: 10px;
-  height: 70px;
-  transform: translateY(-300px);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -webkit-animation: in 500ms 6s ease-out forwards;
-  animation: in 500ms 6s ease-out forwards;
-}
-
-.candle:after,
-.candle:before {
-  background: rgba(255, 0, 0, 0.4);
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 2.22222222px;
-}
-
-.candle:after {
-  top: 15%;
-  left: 0;
-}
-
-.candle:before {
-  top: 45%;
-  left: 0;
-}
-
-.fire {
-  border-radius: 100%;
-  position: absolute;
-  top: -20px;
-  left: 50%;
-  margin-left: -2.6px;
-  width: 6.66666667px;
-  height: 18px;
-}
-
-.fire:nth-child(1) {
-  -webkit-animation: fire 2s 6.5s infinite;
-  animation: fire 2s 6.5s infinite;
-}
-
-.fire:nth-child(2) {
-  -webkit-animation: fire 1.5s 6.5s infinite;
-  animation: fire 1.5s 6.5s infinite;
-}
-
-.fire:nth-child(3) {
-  -webkit-animation: fire 1s 6.5s infinite;
-  animation: fire 1s 6.5s infinite;
-}
-
-.fire:nth-child(4) {
-  -webkit-animation: fire 0.5s 6.5s infinite;
-  animation: fire 0.5s 6.5s infinite;
-}
-
-.fire:nth-child(5) {
-  -webkit-animation: fire 0.2s 6.5s infinite;
-  animation: fire 0.2s 6.5s infinite;
-}
-
-@-webkit-keyframes fire {
-  0%, 100% {
-    background: rgba(254, 248, 97, 0.5);
-    box-shadow: 0 0 40px 10px rgba(248, 233, 209, 0.2);
-    transform: translateY(0) scale(1);
-  }
-  50% {
-    background: rgba(255, 50, 0, 0.1);
-    box-shadow: 0 0 40px 20px rgba(248, 233, 209, 0.2);
-    transform: translateY(-20px) scale(0);
-  }
-}
-
-@keyframes fire {
-  0%, 100% {
-    background: rgba(254, 248, 97, 0.5);
-    box-shadow: 0 0 40px 10px rgba(248, 233, 209, 0.2);
-    transform: translateY(0) scale(1);
-  }
-  50% {
-    background: rgba(255, 50, 0, 0.1);
-    box-shadow: 0 0 40px 20px rgba(248, 233, 209, 0.2);
-    transform: translateY(-20px) scale(0);
-  }
-}
-
-@-webkit-keyframes in {
-  to {
-    transform: translateY(0);
-  }
-}
-
-@keyframes in {
-  to {
-    transform: translateY(0);
-  }
-}
-
-.text {
-  margin-top: 40px;
-  text-align: center;
-  width: 100%;
-  padding: 0 10px;
-}
-
-.text h1 {
-  font-family: 'Brush Script MT', cursive;
-  font-size: clamp(2rem, 8vw, 3rem);
-  color: red;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 3px solid red;
-  display: inline-block;
-  max-width: 100%;
-}
-
-.typewriter {
-  animation:
-    typing 2s steps(30, end) forwards,
-    blink .7s infinite;
-}
-
-/* Typing effect */
-@keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
-}
-
-/* Cursor blink */
-@keyframes blink {
-  50% { border-color: transparent; }
-}
-
-@keyframes fall {
-  0% { 
-    transform: translateY(0) rotate(0deg); 
-    opacity: 1;
-  }
-  100% { 
-    transform: translateY(110vh) rotate(360deg); 
-    opacity: 0;
-  }
-}
-
-/* Mobile Optimization */
-@media screen and (max-width: 768px) {
-  body {
-    padding: 10px;
-  }
-
-  .cake-container {
-    max-width: 150px;
-  }
-
-  #cake {
-    max-width: 150px;
-  }
-
-  .candle {
-    top: 171px; /* Proportional to smaller cake */
-  }
-
-  .text {
-    margin-top: 20px;
-  }
-
-  .text h1 {
-    font-size: clamp(1.5rem, 6vw, 2.5rem);
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .cake-container {
-    max-width: 120px;
-  }
-
-  #cake {
-    max-width: 120px;
-  }
-
-  .candle {
-    top: 137px; /* Proportional to even smaller cake */
-    width: 8px;
-    height: 56px;
-  }
-
-  .text h1 {
-    font-size: clamp(1.2rem, 5vw, 2rem);
-  }
-}
-
-/* Landscape mode on mobile */
-@media screen and (max-height: 600px) and (orientation: landscape) {
-  body {
-    flex-direction: row;
-    justify-content: space-around;
-    padding: 10px;
-  }
-
-  .cake-container {
-    max-width: 120px;
-  }
-
-  #cake {
-    max-width: 120px;
-  }
-
-  .candle {
-    top: 137px;
+    width: 6px;
+    height: 42px;
+    margin-left: -3px;
   }
 
   .text {
